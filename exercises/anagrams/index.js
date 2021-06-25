@@ -8,6 +8,55 @@
 //   anagrams('RAIL! SAFETY!', 'fairy tales') --> True
 //   anagrams('Hi there', 'Bye there') --> False
 
-function anagrams(stringA, stringB) {}
+function anagrams(stringA, stringB) {
+    // remove spaces and punctuation from strings and make strings lower case
+    const strA = stringA.replace(/[^\w]/g, '').toLowerCase();
+    const strB = stringB.replace(/[^\w]/g, '').toLowerCase();
+
+    // create charMap of each string
+    const charMapA = buildCharMap(strA);
+    const charMapB = buildCharMap(strB);
+
+    // compare strings, if same length compare charMaps
+    if(strA.length !== strB.length || Object.keys(charMapA).length !== Object.keys(charMapB).length){
+        return false;
+    } 
+    
+    for (let char in charMapA){
+        if(charMapA[char] !== charMapB[char]){
+            return false;
+        } 
+    }
+
+    // return true if all false conditions not met
+    return true;
+}
+
+function buildCharMap(str){
+    let charMap = {};
+
+    for (let char of str) {
+        if(!charMap[char]){
+            charMap[char] = 1;
+        } else {
+            charMap[char]++;
+        }
+
+        // written cleaner
+        // charMap[char] = charMap[char] + 1 || 1;
+    }
+
+    return charMap;
+}
 
 module.exports = anagrams;
+
+
+// ALTERNATIVE SOLUTION
+// function anagrams(stringA, stringB){
+//     return cleanString(stringA) === cleanString(stringB);
+// }
+
+// function cleanString(str){
+//     return str.replace(/[^\w]/g, '').toLowerCase().split('').sort().join('');
+// }
