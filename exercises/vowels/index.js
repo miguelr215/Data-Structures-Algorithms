@@ -7,6 +7,30 @@
 //   vowels('Why do you ask?') --> 4
 //   vowels('Why?') --> 0
 
-function vowels(str) {}
+// REGULAR EXPRESSION (REGEX) SOLUTION
+// function vowels(str) {
+//     // match function will return an array of the matches or null
+//     const matches = str.match(/[aeiou]/gi);
+//     return matches ? matches.length : 0;
+// }
+
+
+// ITERATIVE SOLUTION
+function vowels(str) {
+    let count = 0;
+    // let checker = ['a', 'e', 'i', 'o', 'u'];
+
+    for (let char of str.toLowerCase()){
+        if(char === 'a' || char === 'e' || char === 'i' || char === 'o' || char === 'u'){
+            count++;
+        }
+
+        // if(checker.includes(char)){
+        //     count++;
+        // }
+    }
+
+    return count;
+}
 
 module.exports = vowels;
