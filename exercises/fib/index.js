@@ -8,6 +8,56 @@
 // Example:
 //   fib(4) === 3
 
-function fib(n) {}
+
+// ITERATIVE SOLUTION
+// function fib(n) {
+//     let counterArr = [0, 1];
+
+//     for (let i = 2; i <= n; i++){
+//         counterArr.push(counterArr[i - 2] + counterArr[i - 1]);
+//     }
+
+//     return counterArr[n];
+// }
+
+
+
+//RECURSIVE SOLUTION
+// function fib(n, index = 2) {
+//     if(n < 2){
+//         return n;
+//     }
+
+//     return fib(n - 1) + fib(n - 2);
+// }
+
+
+
+//RECURSIVE SOLUTION WITH MEMOIZATION
+
+function memoize(fn) {
+    const cache = {};
+
+    return function(...args) {
+        if(cache[args]){
+            return cache[args];
+        }
+        
+        const result = fn.apply(this, args);
+        cache[args] = result;
+        return result;
+    }
+}
+
+function slowFib(n, index = 2) {
+    if(n < 2){
+        return n;
+    }
+
+    // need to call the memoized version, not the slow original function
+    return fib(n - 1) + fib(n - 2);
+}
+
+const fib = memoize(slowFib);
 
 module.exports = fib;
