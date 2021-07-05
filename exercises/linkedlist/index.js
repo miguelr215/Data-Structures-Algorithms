@@ -87,21 +87,30 @@ class LinkedList {
 
     // insert new node as tail
     insertLast(data){
-        if(!this.head){
-            this.insertFirst(data);
+        const lastNode = this.getLast();
+        if(lastNode){
+            // there are nodes in the chain
+            lastNode.next = new Node(data);
+        } else {
+            // chain is empty
+            this.head = new Node(data);
+        }
+    }
+
+    // get at node at specified index
+    getAt(index){
+        let counter = 0;
+        let node = this.head;
+
+        while(node){
+            if(counter === index){
+                return node;
+            }
+            node = node.next;
+            counter++;
         }
 
-        // let currentNode = this.head;
-        // while(currentNode){
-        //     if(currentNode.next === null){
-        //         return currentNode.next = new Node(data);
-        //     } else {
-        //         currentNode = currentNode.next;
-        //     }
-        // }
-
-        let lastNode = this.getLast();
-        lastNode.next = new Node(data);
+        return null;
     }
 }
 

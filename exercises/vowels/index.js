@@ -7,6 +7,8 @@
 //   vowels('Why do you ask?') --> 4
 //   vowels('Why?') --> 0
 
+
+
 // REGULAR EXPRESSION (REGEX) SOLUTION
 // function vowels(str) {
 //     // match function will return an array of the matches or null
