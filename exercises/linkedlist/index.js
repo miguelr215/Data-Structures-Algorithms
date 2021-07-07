@@ -14,10 +14,12 @@ class LinkedList {
         this.head = null;
     }
 
+    // inserts a node at the head
     insertFirst(data){
         this.head = new Node(data, this.head);
     }
 
+    // returns the number of nodes in linked list
     size(){
         let counter = 0;
         let node = this.head;
@@ -147,7 +149,7 @@ class LinkedList {
         previous.next = new Node(data, previous.next);
     }
 
-    // for each function
+    // for each function applies a function to each node in linked list
     forEach(fn) {
         let node = this.head;
         let counter = 0;
