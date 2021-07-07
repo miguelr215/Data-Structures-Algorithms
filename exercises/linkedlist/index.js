@@ -158,7 +158,8 @@ class LinkedList {
         }
     }
 
-    // iterator generator function
+    // iterator generator function from es6/2015
+    // allows for of loop to be run on the linked list
     *[Symbol.iterator]() {
         let node = this.head;
         while(node){
