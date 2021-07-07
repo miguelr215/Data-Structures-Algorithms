@@ -112,6 +112,60 @@ class LinkedList {
 
         return null;
     }
+
+    // remove node at given index
+    removeAt(index){
+        if(!this.head){
+            return;
+        }
+
+        if(index === 0){
+            this.head = this.head.next;
+            return;
+        }
+
+        const previous = this.getAt(index - 1);
+        if(!previous || !previous.next){
+            return;
+        }
+        previous.next = previous.next.next;    
+    }
+
+    // insert new node at given index
+    insertAt(data, index){
+        if(!this.head){
+            this.head = new Node(data);
+            return;
+        }
+
+        if(index === 0){
+            this.head = new Node(data, this.head);
+            return;
+        }
+
+        const previous = this.getAt(index - 1) || this.getLast();
+        previous.next = new Node(data, previous.next);
+    }
+
+    // for each function
+    forEach(fn) {
+        let node = this.head;
+        let counter = 0;
+        while(node){
+            fn(node, counter);
+            node = node.next;
+            counter++;
+        }
+    }
+
+    // iterator generator function
+    *[Symbol.iterator]() {
+        let node = this.head;
+        while(node){
+            yield node;
+            node = node.next;
+        }
+    }
 }
 
 module.exports = { Node, LinkedList };
