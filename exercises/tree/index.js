@@ -31,6 +31,35 @@ class Tree {
     constructor() {
         this.root = null;
     }
+
+    traverseBF(fn) {
+        const treeArr = [this.root];
+        
+        while(treeArr.length) {
+            const node = treeArr.shift();
+
+            for (let child of node.children) {
+                treeArr.push(child);
+            }
+            // alternative to for of loop you can use ES2015 spread operator
+            // treeArr.push(...node.children);
+
+            fn(node);
+        }
+
+    }
+
+    traverseDF(fn) {
+        const treeArr = [this.root];
+
+        while(treeArr.length) {
+            const node = treeArr.shift();
+
+            treeArr.unshift(...node.children);
+
+            fn(node);
+        }
+    }
 }
 
 module.exports = { Tree, Node };
